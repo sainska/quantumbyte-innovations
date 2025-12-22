@@ -9,11 +9,11 @@ const footerLinks = {
     { label: "Consulting", href: "#" },
   ],
   company: [
-    { label: "About Us", href: "#about" },
+    { label: "About Us", href: "/about" },
     { label: "Careers", href: "#" },
     { label: "Case Studies", href: "#work" },
     { label: "Blog", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "/contact" },
   ],
   resources: [
     { label: "Documentation", href: "#" },

@@ -63,6 +63,51 @@
     --sidebar-ring: 187 100% 42%;
   }
 
+  /* Light theme */
+  .light {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 187 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 94%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 45%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 85%;
+    --input: 214 32% 91%;
+    --ring: 187 100% 35%;
+    
+    /* Light theme quantum tokens */
+    --quantum-glow: 187 100% 40%;
+    --quantum-dark: 210 40% 96%;
+    --quantum-surface: 210 40% 98%;
+    --quantum-gradient-start: 187 100% 35%;
+    --quantum-gradient-end: 262 83% 58%;
+    
+    /* Light shadows */
+    --shadow-glow: 0 0 60px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 25px 50px -12px hsl(222 47% 11% / 0.1);
+    --shadow-elevated: 0 10px 40px -10px hsl(var(--primary) / 0.15);
+    
+    /* Light sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 187 100% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 85%;
+    --sidebar-ring: 187 100% 35%;
+  }
+
   .dark {
     --background: 222 47% 6%;
     --foreground: 210 40% 96%;

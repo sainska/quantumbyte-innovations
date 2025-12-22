@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,10 +20,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "Services", href: "#services" },
-    { label: "Technologies", href: "#tech" },
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
+    { label: "Services", href: isHomePage ? "#services" : "/#services" },
+    { label: "Technologies", href: isHomePage ? "#tech" : "/#tech" },
+    { label: "Work", href: isHomePage ? "#work" : "/#work" },
+    { label: "About", href: "/about" },
   ];
 
   return (
@@ -31,7 +36,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 rounded-lg quantum-gradient flex items-center justify-center shadow-lg group-hover:shadow-primary/40 transition-shadow duration-300">
             <span className="font-display font-bold text-primary-foreground text-lg">Q</span>
           </div>
@@ -43,38 +48,57 @@ const Navbar = () => {
               Innovations
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
-            >
-              {link.label}
-            </a>
+            link.href.startsWith("/") && !link.href.includes("#") ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+              >
+                {link.label}
+              </a>
+            )
           ))}
         </div>
 
-        {/* CTA Buttons */}
-        <div className="hidden lg:flex items-center gap-4">
-          <Button variant="ghost" size="sm">
-            Contact
-          </Button>
+        {/* Right Side Controls */}
+        <div className="hidden lg:flex items-center gap-2">
+          <LanguageSwitcher />
+          <ThemeToggle />
+          <div className="w-px h-6 bg-border/50 mx-2" />
+          <Link to="/contact">
+            <Button variant="ghost" size="sm">
+              Contact
+            </Button>
+          </Link>
           <Button variant="default" size="sm">
             Get Started
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden p-2 text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <LanguageSwitcher />
+          <ThemeToggle />
+          <button
+            className="p-2 text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -82,19 +106,32 @@ const Navbar = () => {
         <div className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 py-6">
           <div className="container mx-auto px-6 flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-base font-medium py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+              link.href.startsWith("/") && !link.href.includes("#") ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-base font-medium py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-base font-medium py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-border/50">
-              <Button variant="outline" className="w-full">
-                Contact
-              </Button>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="outline" className="w-full">
+                  Contact
+                </Button>
+              </Link>
               <Button variant="default" className="w-full">
                 Get Started
               </Button>

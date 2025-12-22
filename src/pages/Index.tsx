@@ -7,20 +7,24 @@ import WorkSection from "@/components/WorkSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import SkipToContent from "@/components/SkipToContent";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background overflow-x-hidden">
-      <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <StatsSection />
-      <TechStackSection />
-      <WorkSection />
-      <TestimonialsSection />
-      <CTASection />
-      <Footer />
-    </main>
+    <>
+      <SkipToContent />
+      <main id="main-content" className="min-h-screen bg-background overflow-x-hidden">
+        <Navbar />
+        <HeroSection />
+        <ServicesSection />
+        <StatsSection />
+        <TechStackSection />
+        <WorkSection />
+        <TestimonialsSection />
+        <CTASection />
+        <Footer />
+      </main>
+    </>
   );
 };
 
